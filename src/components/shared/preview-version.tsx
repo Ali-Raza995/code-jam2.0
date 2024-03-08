@@ -1,11 +1,16 @@
 import React from "react";
 import { jsPDF } from "jspdf";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface Props {
-  handleFunc: () => void;
+  handleFunc?: () => void;
 }
 
 const PreviewVersion = ({ handleFunc }: Props) => {
+  const { userInfo } = useSelector((state: RootState) => state.user);
+
+  console.log("🚀 ~ PreviewVersion ~ userInfo:", userInfo);
   const doc = new jsPDF();
   const user = "user";
   const handleDownload = () => {
@@ -23,17 +28,11 @@ const PreviewVersion = ({ handleFunc }: Props) => {
           <div className="flex flex-col gap-10">
             <div className="flex w-full">
               <div className="w-1/2">
-                <h2 className="text-2xl font-bold">Muhammad Fareed</h2>
-                <p className="text-sm">Full Stack developer</p>
+                <h2 className="text-2xl font-bold">{userInfo.fullName}</h2>
+                <p className="text-sm">{userInfo.role}</p>
                 <div className="mt-16">
                   <h3 className="font-bold">Summary</h3>
-                  <p className="">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Dolores in nostrum reiciendis voluptatum laudantium
-                    voluptates tenetur neque, accusantium commodi aut veniam
-                    culpa consequatur velit facere sit rem maxime. Ullam,
-                    aspernatur.
-                  </p>
+                  <p className="">{userInfo.responsibilities}</p>
                 </div>
               </div>
               <div className="w-[50%] flex justify-end">
@@ -41,8 +40,8 @@ const PreviewVersion = ({ handleFunc }: Props) => {
                   <h3 className="font-bold pb-5 text-lg">
                     Personal Information
                   </h3>
-                  <p>fareed@gmail.com</p>
-                  <p>0304-3686779</p>
+                  <p>{userInfo.email}</p>
+                  <p>{userInfo.phone}</p>
                 </div>
               </div>
             </div>
@@ -51,17 +50,17 @@ const PreviewVersion = ({ handleFunc }: Props) => {
                 <div>
                   <div className="eduction">
                     <h3 className="text-xl font-bold">Education</h3>
-                    <p className="text-lg font-semibold">Program</p>
-                    <p className="text-sm">university</p>
-                    <p className="text-xs">2018</p>
+                    <p className="text-lg font-semibold">{userInfo.degree}</p>
+                    <p className="text-sm">{userInfo.institution}</p>
+                    <p className="text-xs">{userInfo.year}</p>
                   </div>
                 </div>
                 <div>
                   <div className="work">
                     <h3 className="text-xl font-bold">WORK EXPERIENCE</h3>
-                    <p className="text-lg font-semibold">Program</p>
-                    <p className="text-sm">university</p>
-                    <p className="text-xs">2018</p>
+                    <p className="text-lg font-semibold">{userInfo.role}</p>
+                    <p className="text-sm">{userInfo.company}</p>
+                    <p className="text-xs">{userInfo.duration}</p>
                   </div>
                 </div>
               </div>
@@ -69,7 +68,9 @@ const PreviewVersion = ({ handleFunc }: Props) => {
                 <div>
                   <h3 className="text-xl font-bold">Skills</h3>
                   <div>
-                    <li className="">react js</li>
+                    {userInfo?.skills?.map(({ label, value }) => (
+                      <li className="">{label}</li>
+                    ))}
                   </div>
                 </div>
               </div>

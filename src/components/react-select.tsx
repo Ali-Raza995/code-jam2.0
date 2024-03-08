@@ -5,7 +5,7 @@ import { colourOptions } from "@/data/data-select";
 
 const SkillsSelect = ({ name, value, setVal }: any) => {
   return (
-    <div>
+    <div className="relative">
       <CreatableSelect
         isMulti
         onChange={(e) => {

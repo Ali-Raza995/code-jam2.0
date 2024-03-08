@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserData } from "@/store/slices/user-slice";
 import PreviewVersion from "../shared/preview-version";
+import jsPDF from "jspdf";
 
 const resumeDeatailsSchema = Yup.object({
   fullName: Yup.string().required("Please Enter FullName"),
@@ -62,6 +63,7 @@ const ResumeForm = () => {
       dispatch(getUserData(values));
       toast.success("Resume Generated");
       console.log(values);
+      setShowPreview(!showPreview);
     },
     validationSchema: resumeDeatailsSchema,
   });
@@ -79,16 +81,14 @@ const ResumeForm = () => {
 
   const handleClick = () => {
     setShowPreview(!showPreview);
-    // doc.text("Hello world!", 10, 10);
-    // doc.save("a4.pdf");
   };
 
   return (
-    <div>
-      {showPreview && <PreviewVersion handleFunc={handleClick} />}
+    <div className="relative">
       <div
         className={`relative w-full flex flex-col justify-center items-center mt-10`}
       >
+        {showPreview && <PreviewVersion handleFunc={handleClick} />}
         <p className=" text-h1 text-center font-extrabold">Generate Resume</p>
         <form onSubmit={handleButtonClick} className="lg:w-[60%] w-[80%]">
           <div className="mt-[1rem] flex flex-col">
@@ -266,7 +266,7 @@ const ResumeForm = () => {
             <div className="mb-5 max-sm:mt-[3rem] flex flex-col">
               <p className="text-black">Year</p>
               <DatePicker
-                className="h-14 w-full p-4 outline-none border p-4 border-[#ff5c00] text-black"
+                className="h-14 w-full relative -z-50 outline-none border p-4 border-[#ff5c00] text-black"
                 selected={values.year ? new Date(values.year) : null}
                 placeholderText="Select Date"
                 showYearPicker
@@ -328,7 +328,10 @@ const ResumeForm = () => {
             <button className="h-14 w-full outline-none border p-4 border-[#ff5c00] text-black">
               Generate Resume
             </button>
-            <div className="h-14 w-full cursor-pointer text-center outline-none border p-4 border-[#ff5c00] text-black">
+            <div
+              onClick={handleClick}
+              className="h-14 w-full cursor-pointer text-center outline-none border p-4 border-[#ff5c00] text-black"
+            >
               Preview Resume
             </div>
           </div>

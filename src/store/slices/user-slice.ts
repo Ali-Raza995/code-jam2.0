@@ -1,7 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialUserState = {
-  userInfo: {},
+interface skills {
+  label: string | null;
+  value: string | null;
+}
+
+export interface UserState {
+  userInfo: {
+    company: string | null;
+    degree: string | null;
+    duration: string | null;
+    email: string | null;
+    fullName: string | null;
+    institution: string | null;
+    phone: string | null;
+    responsibilities: string | null;
+    role: string | null;
+    skills: Array<skills>;
+
+    year: string | null;
+  };
+}
+
+const initialUserState: UserState = {
+  userInfo: {
+    company: null,
+    degree: null,
+    duration: null,
+    email: null,
+    fullName: null,
+    institution: null,
+    phone: null,
+    responsibilities: null,
+    role: null,
+    skills: [],
+    year: null,
+  },
 };
 
 export const userSlice = createSlice({
