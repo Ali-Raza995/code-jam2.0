@@ -11,6 +11,7 @@ import SkillsSelect from "../react-select";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserData } from "@/store/slices/user-slice";
+import PreviewVersion from "../shared/preview-version";
 
 const resumeDeatailsSchema = Yup.object({
   fullName: Yup.string().required("Please Enter FullName"),
@@ -43,6 +44,7 @@ const ResumeForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [val, setVal] = useState([]);
+  const [showPreview, setShowPreview] = useState(false);
 
   const {
     values,
@@ -75,8 +77,15 @@ const ResumeForm = () => {
     }
   };
 
+  const handleClick = () => {
+    setShowPreview(!showPreview);
+    // doc.text("Hello world!", 10, 10);
+    // doc.save("a4.pdf");
+  };
+
   return (
     <div>
+      {showPreview && <PreviewVersion handleFunc={handleClick} />}
       <div
         className={`relative w-full flex flex-col justify-center items-center mt-10`}
       >
@@ -91,7 +100,7 @@ const ResumeForm = () => {
               value={values.fullName}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.fullName && touched.fullName ? (
@@ -110,7 +119,7 @@ const ResumeForm = () => {
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.email && touched.email ? (
@@ -129,7 +138,7 @@ const ResumeForm = () => {
               value={values.phone}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.phone && touched.phone ? (
@@ -148,7 +157,7 @@ const ResumeForm = () => {
               value={values.degree}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.degree && touched.degree ? (
@@ -168,7 +177,7 @@ const ResumeForm = () => {
               value={values.institution}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.institution && touched.institution ? (
@@ -187,7 +196,7 @@ const ResumeForm = () => {
               value={values.company}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.company && touched.company ? (
@@ -206,7 +215,7 @@ const ResumeForm = () => {
               value={values.role}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.role && touched.role ? (
@@ -224,7 +233,7 @@ const ResumeForm = () => {
               value={values.responsibilities}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.responsibilities && touched.responsibilities ? (
@@ -242,7 +251,7 @@ const ResumeForm = () => {
               value={values.duration}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="border border-[#ff5c00] text-black"
+              className="border p-4 border-[#ff5c00] text-black"
             />
             <div className="h-6">
               {errors.duration && touched.duration ? (
@@ -257,7 +266,7 @@ const ResumeForm = () => {
             <div className="mb-5 max-sm:mt-[3rem] flex flex-col">
               <p className="text-black">Year</p>
               <DatePicker
-                className="h-14 w-full p-4 outline-none border border-[#ff5c00] text-black"
+                className="h-14 w-full p-4 outline-none border p-4 border-[#ff5c00] text-black"
                 selected={values.year ? new Date(values.year) : null}
                 placeholderText="Select Date"
                 showYearPicker
@@ -312,13 +321,16 @@ const ResumeForm = () => {
           </div>
           <div className="mt-5">
             <label htmlFor="Skills">Skills</label>
-            <SkillsSelect onChange={onchange} name="skills" setVal={setVal} />
+            <SkillsSelect name="skills" setVal={setVal} />
           </div>
 
-          <div className="mt-5 max-w-[20rem]">
-            <button className="h-14 w-full p-4 outline-none border border-[#ff5c00] text-black">
+          <div className="mt-5 max-w-[24rem] flex gap-2">
+            <button className="h-14 w-full outline-none border p-4 border-[#ff5c00] text-black">
               Generate Resume
             </button>
+            <div className="h-14 w-full cursor-pointer text-center outline-none border p-4 border-[#ff5c00] text-black">
+              Preview Resume
+            </div>
           </div>
         </form>
       </div>

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import heroImage from "/public/images/Resume_Sample1.png";
 
 import PreviewVersion from "../shared/preview-version";
+import Link from "next/link";
 
 const HeroSection = () => {
   const [showPreview, setShowPreview] = useState(false);
@@ -31,13 +32,8 @@ const HeroSection = () => {
             Build a resume thats piques the interest of recruiters and gets you
             hired. It’s fast and easy to use.
           </p>
-          <div>
-            <button
-              onClick={handleClick}
-              className="bg-[#FF5C00] text-white w-60 rounded-full py-3"
-            >
-              Build Your Resume
-            </button>
+          <div className="bg-[#FF5C00] text-white w-60 rounded-full py-3 text-center">
+            <Link href={"/resume-form"}>Build Your Resume</Link>
           </div>
         </div>
         {/* iamge section */}
