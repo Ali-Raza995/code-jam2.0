@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import heroImage from "../../../public/images/Resume_Sample1.png";
-import { jsPDF } from "jspdf";
+import heroImage from "/public/images/Resume_Sample1.png";
+
 import PreviewVersion from "../shared/preview-version";
 
 const HeroSection = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const doc = new jsPDF();
+
   const handleClick = () => {
     setShowPreview(!showPreview);
     // doc.text("Hello world!", 10, 10);
