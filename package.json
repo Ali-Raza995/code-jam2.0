@@ -21,6 +21,10 @@
     "react-dom": "^18",
     "react-redux": "^9.1.0",
 <<<<<<< HEAD
+    "react-select": "^5.8.0",
+=======
+<<<<<<< HEAD
+>>>>>>> bbc01e7cc4b3f89e40f8558fc432dd963d2c43dd
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0"
