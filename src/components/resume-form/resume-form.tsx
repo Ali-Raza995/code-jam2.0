@@ -150,25 +150,30 @@ const ResumeForm = () => {
             </div>
 
             <div>
-              <div className="mt-[1rem]">
-                <label htmlFor="fullName">Full Name</label>
+              <div className="mt-[1rem] flex flex-col">
+                <label htmlFor="fullName">Email</label>
                 <input
                   type="text"
                   placeholder="Enter Full Name"
-                  name="fullName"
-                  value={values.fullName}
+                  name="email"
+                  value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  // errors={errors.fullName as string}
-                  // touched={touched.fullName}
                 />
+                <div className="h-6">
+                  {errors.email && touched.email ? (
+                    <p className="text-red pb-4 text-p">
+                      {errors.email as string}
+                    </p>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
           <div className="grid md:grid-cols-3 max-sm:grid-cols-1 gap-[1rem]">
             <div>
               <div className="mt-[1rem]">
-                <label htmlFor="fullName">Full Name</label>
+                <label htmlFor="fullName">Role</label>
                 <input
                   type="text"
                   placeholder="Enter Full Name"
