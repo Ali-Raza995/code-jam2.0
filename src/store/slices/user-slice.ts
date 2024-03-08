@@ -13,6 +13,7 @@ export const userSlice = createSlice({
       state.actionsLoading = false;
     },
     getUserData: (state, action) => {
+      console.log("payload", action.payload);
       state.userInfo = action.payload;
     },
   },

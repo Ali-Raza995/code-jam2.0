@@ -7,6 +7,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import SkillsSelect from "../react-select";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getUserData } from "@/store/slices/user-slice";
 
 const resumeDeatailsSchema = Yup.object({
   fullName: Yup.string().required("Please Enter FullName"),
@@ -19,6 +23,7 @@ const resumeDeatailsSchema = Yup.object({
   role: Yup.string().required("Please Enter Company"),
   responsibilities: Yup.string().required("Please Enter Company"),
   duration: Yup.string().required("Please Enter Company"),
+  // skills: Yup.array().min(1).required("Please Enter At least One Skill"),
 });
 
 const initialValues = {
@@ -35,7 +40,9 @@ const initialValues = {
 };
 
 const ResumeForm = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
+  const [val, setVal] = useState([]);
 
   const {
     values,
@@ -48,7 +55,10 @@ const ResumeForm = () => {
     setFieldValue,
   } = useFormik({
     initialValues: initialValues,
-    onSubmit: async (values) => {
+    onSubmit: async (values: any) => {
+      values.skills = val;
+      dispatch(getUserData(values));
+      toast.success("Resume Generated");
       console.log(values);
     },
     validationSchema: resumeDeatailsSchema,
@@ -299,6 +309,10 @@ const ResumeForm = () => {
                 ) : null}
               </div>
             </div>
+          </div>
+          <div className="mt-5">
+            <label htmlFor="Skills">Skills</label>
+            <SkillsSelect onChange={onchange} name="skills" setVal={setVal} />
           </div>
 
           <div className="mt-5 max-w-[20rem]">

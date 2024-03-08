@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 import CreatableSelect from "react-select/creatable";
 import { colourOptions } from "@/data/data-select";
 
-const SkillsSelect = () => {
+const SkillsSelect = ({ onChange, name, value, setVal }: any) => {
   return (
     <div>
-      <CreatableSelect isMulti options={colourOptions} />
+      <CreatableSelect
+        isMulti
+        onChange={(e) => {
+          setVal(e);
+        }}
+        name={name}
+        options={colourOptions}
+      />
     </div>
   );
 };
