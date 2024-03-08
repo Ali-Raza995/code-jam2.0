@@ -1,5 +1,6 @@
 "use client";
 
+import SkillsSelect from "@/components/react-select";
 import { getUserData } from "@/store/slices/user-slice";
 import { useEffect } from "react";
 
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <button onClick={handleDispatch}>Button dispatch</button>
+      <SkillsSelect />
     </main>
   );
 }
