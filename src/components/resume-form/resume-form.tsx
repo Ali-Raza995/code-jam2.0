@@ -85,8 +85,159 @@ const ResumeForm = () => {
             />
             <div className="h-6">
               {errors.fullName && touched.fullName ? (
-                <p className="text-red pb-4 text-p">
+                <p className="text-red-400 pb-4 text-p">
                   {errors.fullName as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="Email">Email</label>
+            <input
+              type="text"
+              placeholder="Enter Email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.email && touched.email ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.email as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="phone">Phone</label>
+            <input
+              type="number"
+              placeholder="Enter Phone Number"
+              name="phone"
+              value={values.phone}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.phone && touched.phone ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.phone as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="degree">Degree</label>
+            <input
+              type="text"
+              placeholder="Enter Your Degree"
+              name="degree"
+              value={values.degree}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.degree && touched.degree ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.degree as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="fullName">Institution</label>
+            <input
+              type="text"
+              placeholder="Enter Your Institution"
+              name="institution"
+              value={values.institution}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.institution && touched.institution ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.institution as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="company">Company</label>
+            <input
+              type="text"
+              placeholder="Enter Your Institution"
+              name="company"
+              value={values.company}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.company && touched.company ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.company as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="company">Role</label>
+            <input
+              type="text"
+              placeholder="Enter Your Role"
+              name="role"
+              value={values.role}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.role && touched.role ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.role as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="company">Responsibilities</label>
+            <textarea
+              placeholder="Enter Your Responsibilities"
+              name="responsibilities"
+              value={values.responsibilities}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.responsibilities && touched.responsibilities ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.responsibilities as string}
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <div className="mt-[1rem] flex flex-col">
+            <label htmlFor="duration">Duration</label>
+            <textarea
+              placeholder="Enter Your Duration"
+              name="duration"
+              value={values.duration}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="border border-[#ff5c00] text-black"
+            />
+            <div className="h-6">
+              {errors.duration && touched.duration ? (
+                <p className="text-red-400 pb-4 text-p">
+                  {errors.duration as string}
                 </p>
               ) : null}
             </div>
@@ -94,9 +245,9 @@ const ResumeForm = () => {
 
           <div className="grid md:grid-cols-3 max-sm:grid-cols-1 gap-[1rem]">
             <div className="mb-5 max-sm:mt-[3rem] flex flex-col">
-              <p className="text-white">Year</p>
+              <p className="text-black">Year</p>
               <DatePicker
-                className="h-14 w-full p-4 outline-none"
+                className="h-14 w-full p-4 outline-none border border-[#ff5c00] text-black"
                 selected={values.year ? new Date(values.year) : null}
                 placeholderText="Select Date"
                 showYearPicker
@@ -127,7 +278,7 @@ const ResumeForm = () => {
                     }}
                   />
                 }
-                onChange={(date) => {
+                onChange={(date: any) => {
                   const selectedYear = date
                     ? date.getFullYear().toString()
                     : "";
@@ -142,54 +293,18 @@ const ResumeForm = () => {
               />
               <div className="h-6">
                 {errors.year && touched.year ? (
-                  <p className="text-red pb-4 text-p">
+                  <p className="text-red-400 pb-4 text-p">
                     {errors.year as string}
                   </p>
                 ) : null}
               </div>
             </div>
-
-            <div>
-              <div className="mt-[1rem] flex flex-col">
-                <label htmlFor="fullName">Email</label>
-                <input
-                  type="text"
-                  placeholder="Enter Full Name"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <div className="h-6">
-                  {errors.email && touched.email ? (
-                    <p className="text-red pb-4 text-p">
-                      {errors.email as string}
-                    </p>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 max-sm:grid-cols-1 gap-[1rem]">
-            <div>
-              <div className="mt-[1rem]">
-                <label htmlFor="fullName">Role</label>
-                <input
-                  type="text"
-                  placeholder="Enter Full Name"
-                  name="fullName"
-                  value={values.fullName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  // errors={errors.fullName as string}
-                  // touched={touched.fullName}
-                />
-              </div>
-            </div>
           </div>
 
-          <div className="mt-5">
-            <button>Generate Resume</button>
+          <div className="mt-5 max-w-[20rem]">
+            <button className="h-14 w-full p-4 outline-none border border-[#ff5c00] text-black">
+              Generate Resume
+            </button>
           </div>
         </form>
       </div>
