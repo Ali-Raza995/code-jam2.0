@@ -11,14 +11,13 @@ import SkillsSelect from "../react-select";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUserData } from "@/store/slices/user-slice";
-import PreviewVersion from "../shared/preview-version";
-import jsPDF from "jspdf";
+import PreviewVersionDownload from "../shared/previewDownload";
 
 const resumeDeatailsSchema = Yup.object({
   fullName: Yup.string().required("Please Enter FullName"),
   email: Yup.string().email().required("Please Enter Your Email"),
   phone: Yup.number().required("Please Enter Phone"),
-  year: Yup.string().required("Please Select Year"),
+  // year: Yup.string().required("Please Select Year"),
   degree: Yup.string().required("Please Enter Degree"),
   institution: Yup.string().required("Please Enter Institution"),
   company: Yup.string().required("Please Enter Company"),
@@ -80,16 +79,18 @@ const ResumeForm = () => {
   };
 
   const handleClick = () => {
-    setShowPreview(!showPreview);
+    if (!errors) {
+      setShowPreview(!showPreview);
+    }
   };
 
   return (
-    <div className="relative">
+    <div className="relative py-4 mb-8">
       <div
         className={`relative w-full flex flex-col justify-center items-center mt-10`}
       >
-        {showPreview && <PreviewVersion handleFunc={handleClick} />}
-        <p className=" text-h1 text-center font-extrabold">Generate Resume</p>
+        {showPreview && <PreviewVersionDownload handleFunc={handleClick} />}
+        <p className=" text-h1 text-center font-extrabold text-[30px] font-medium">Generate Resume</p>
         <form onSubmit={handleButtonClick} className="lg:w-[60%] w-[80%]">
           <div className="mt-[1rem] flex flex-col">
             <label htmlFor="fullName">Full Name</label>
@@ -262,7 +263,7 @@ const ResumeForm = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 max-sm:grid-cols-1 gap-[1rem]">
+          {/* <div className="grid md:grid-cols-3 max-sm:grid-cols-1 gap-[1rem]">
             <div className="mb-5 max-sm:mt-[3rem] flex flex-col">
               <p className="text-black">Year</p>
               <DatePicker
@@ -318,8 +319,8 @@ const ResumeForm = () => {
                 ) : null}
               </div>
             </div>
-          </div>
-          <div className="mt-5">
+          </div> */}
+          <div className="mt-5 z-[-1]">
             <label htmlFor="Skills">Skills</label>
             <SkillsSelect name="skills" setVal={setVal} />
           </div>
@@ -328,12 +329,13 @@ const ResumeForm = () => {
             <button className="h-14 w-full outline-none border p-4 border-[#ff5c00] text-black">
               Generate Resume
             </button>
-            <div
+            <button
               onClick={handleClick}
+              type="submit"
               className="h-14 w-full cursor-pointer text-center outline-none border p-4 border-[#ff5c00] text-black"
             >
               Preview Resume
-            </div>
+            </button>
           </div>
         </form>
       </div>

@@ -18,7 +18,6 @@ const HeroSection = () => {
 
   return (
     <>
-      {showPreview && <PreviewVersion handleFunc={handleClick} />}
       <div className="flex p-10 ">
         {/* content Section  */}
         <div className="w-1/2">
