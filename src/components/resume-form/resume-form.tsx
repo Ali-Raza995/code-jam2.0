@@ -326,15 +326,12 @@ const ResumeForm = () => {
           </div>
 
           <div className="mt-5 max-w-[24rem] flex gap-2">
-            <button className="h-14 w-full outline-none border p-4 border-[#ff5c00] text-black">
-              Generate Resume
-            </button>
             <button
               onClick={handleClick}
               type="submit"
               className="h-14 w-full cursor-pointer text-center outline-none border p-4 border-[#ff5c00] text-black"
             >
-              Preview Resume
+             Generate and Preview Resume
             </button>
           </div>
         </form>

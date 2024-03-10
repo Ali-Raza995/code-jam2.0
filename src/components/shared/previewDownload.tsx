@@ -153,12 +153,16 @@ const PreviewVersionDownload = ({ handleFunc }: Props) => {
     <div
       onClick={handleFunc}
       className="w-full flex justify-center mt-10 absolute h-full z-40"
-      style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%" }}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
     >
       <PDFViewer style={{ width: "100%", height: "100vh" }}>
-        <>
-          {resumeDocument}
-        </>
+        <>{resumeDocument}</>
       </PDFViewer>
     </div>
   );
