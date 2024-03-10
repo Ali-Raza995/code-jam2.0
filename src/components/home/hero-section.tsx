@@ -2,8 +2,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import heroImage from "/public/images/Resume_Sample1.png";
-
-import PreviewVersion from "../shared/preview-version";
 import Link from "next/link";
 
 const HeroSection = () => {
